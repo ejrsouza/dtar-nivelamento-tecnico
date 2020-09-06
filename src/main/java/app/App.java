@@ -11,9 +11,7 @@ public class App {
     public static void main (String [] args){
         Viagem viagem = new Viagem(Destinos.GOIAS);
 
-        viagem.setDestino(Destinos.MARINGA);
-
-        viagem.setDestino(Destinos.MANAUS);
+        viagem.setDestino(Destinos.RECIFE);
 
         Acompanhante acompanhante1 = new Acompanhante();
         acompanhante1.setNome("Poliane");
@@ -28,12 +26,12 @@ public class App {
         acompanhantes.add(acompanhante2);
         viagem.setAcompanhantes(acompanhantes);
 
-        System.out.println(viagem.getDestino().getCidade());
-        System.out.println(viagem.getAcompanhantes().size());
-
+        System.out.println("Destino da viagem: " + viagem.getDestino().getCidade());
+        System.out.println("Quantidade de Acompanhantes: " + viagem.getAcompanhantes().size());
+        System.out.println("Lista de acompanhantes:");
         for (Acompanhante acompanhante : viagem.getAcompanhantes()){
-            System.out.println(acompanhante.getNome());
-            System.out.println(acompanhante.isConfirmouCadastro());
+            System.out.println("Nome: " + acompanhante.getNome());
+            System.out.println("Cadastro confirmado: " + acompanhante.isConfirmouCadastro());
         }
     }
 }
