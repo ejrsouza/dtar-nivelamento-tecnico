@@ -5,6 +5,7 @@ public enum Destinos {
     MARINGA("Maringá"),
     GOIAS("Goiás"),
     RECIFE("Recife"),
+    MIAMI("Miami"),
     MANAUS("Manaus");
 
     private String cidade;

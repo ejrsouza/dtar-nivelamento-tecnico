@@ -2,6 +2,8 @@ package app;
 
 import dto.Acompanhante;
 import dto.Viagem;
+import dto.ViagemInternacional;
+import dto.ViagemNacional;
 import enums.Destinos;
 
 import java.util.ArrayList;
@@ -24,7 +26,13 @@ public class App {
         List<Acompanhante> acompanhantes = new ArrayList<Acompanhante>();
         acompanhantes.add(acompanhante1);
         acompanhantes.add(acompanhante2);
-        viagem.setAcompanhantes(acompanhantes);
+        try {
+            viagem.setAcompanhantes(acompanhantes);
+        } catch (Exception excecao){
+            System.out.println("Ocorreu um erro:");
+            System.out.println(excecao.getMessage());
+        }
+
 
         System.out.println("Destino da viagem: " + viagem.getDestino().getCidade());
         System.out.println("Quantidade de Acompanhantes: " + viagem.getAcompanhantes().size());
@@ -33,5 +41,28 @@ public class App {
             System.out.println("Nome: " + acompanhante.getNome());
             System.out.println("Cadastro confirmado: " + acompanhante.isConfirmouCadastro());
         }
+
+        ViagemNacional viagemNacional1 = new ViagemNacional(Destinos.GOIAS);
+        try {
+            viagemNacional1.setAcompanhantes(acompanhantes);
+        } catch (Exception excecao){
+        System.out.println("Ocorreu um erro:");
+        System.out.println(excecao.getMessage());
+    }
+        viagemNacional1.setCpf("12345678915");
+
+        ViagemInternacional viagemInternacional1 = new ViagemInternacional(Destinos.MIAMI);
+        try {
+        viagemInternacional1.setAcompanhantes(acompanhantes);
+        } catch (Exception excecao){
+            System.out.println("Ocorreu um erro:");
+            System.out.println(excecao.getMessage());
+        }
+        viagemInternacional1.setPassaporte("15965-56");
+
+        System.out.println(viagemNacional1.getDestino().getCidade());
+        System.out.println(viagemInternacional1.getDestino().getCidade());
+        System.out.println(viagemNacional1.getCpf());
+        System.out.println(viagemInternacional1.getPassaporte());
     }
 }

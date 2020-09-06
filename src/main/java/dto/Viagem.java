@@ -26,7 +26,7 @@ public class Viagem {
         return this.acompanhantes;
     }
 
-    public void setAcompanhantes(List<Acompanhante> acompanhantes){
+    public void setAcompanhantes(List<Acompanhante> acompanhantes) throws Exception{
         this.acompanhantes = acompanhantes;
     }
 
