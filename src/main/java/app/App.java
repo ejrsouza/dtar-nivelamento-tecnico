@@ -17,7 +17,7 @@ public class App {
 
         Acompanhante acompanhante1 = new Acompanhante();
         acompanhante1.setNome("Poliane");
-        acompanhante1.setConfirmouCadastro(false);
+        acompanhante1.setConfirmouCadastro(true);
 
         Acompanhante acompanhante2 = new Acompanhante();
         acompanhante2.setNome("Edleuza");
@@ -32,5 +32,10 @@ public class App {
         System.out.println(viagem.getAcompanhantes().size());
         System.out.println(viagem.getAcompanhantes().get(0).getNome());
         System.out.println(viagem.getAcompanhantes().get(1).getNome());
+
+        for (int i=0; i < viagem.getAcompanhantes().size(); i++){
+            System.out.println(viagem.getAcompanhantes().get(i).getNome());
+            System.out.println(viagem.getAcompanhantes().get(i).isConfirmouCadastro());
+        }
     }
 }
