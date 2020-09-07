@@ -26,6 +26,10 @@ public class App {
         List<Acompanhante> acompanhantes = new ArrayList<Acompanhante>();
         acompanhantes.add(acompanhante1);
         acompanhantes.add(acompanhante2);
+        acompanhantes.add(acompanhante1);
+        acompanhantes.add(acompanhante2);
+        acompanhantes.add(acompanhante1);
+        acompanhantes.add(acompanhante2);
         try {
             viagem.setAcompanhantes(acompanhantes);
         } catch (Exception excecao){

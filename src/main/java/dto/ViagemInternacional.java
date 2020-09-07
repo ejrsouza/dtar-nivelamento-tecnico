@@ -2,7 +2,9 @@ package dto;
 
 import enums.Destinos;
 
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class ViagemInternacional extends Viagem{
     private String passaporte;
@@ -21,10 +23,15 @@ public class ViagemInternacional extends Viagem{
 
     @Override
     public void setAcompanhantes(List<Acompanhante> acompanhantes) throws Exception {
-        if (acompanhantes.size() <= 1) {
+
+        Properties propriedades = new Properties();
+        propriedades.load(new FileInputStream("src\\main\\resources\\application.properties"));
+        int limiteDeAcompanhantes = Integer.parseInt(propriedades.getProperty("viagem.internacional.acompanhantes.limite"));
+
+        if (acompanhantes.size() <= limiteDeAcompanhantes) {
             super.setAcompanhantes(acompanhantes);
         } else {
-            throw new Exception("Impossível realizar viagem internacional com mais que 1 acompanhante");
+            throw new Exception("Impossível realizar viagem internacional com mais que "+ limiteDeAcompanhantes +" acompanhante");
         }
     }
 }
