@@ -3,10 +3,7 @@ package dto;
 import enums.Destinos;
 import interfaces.CalculadoraDePrevisao;
 import utils.ArquivosUtils;
-
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.Properties;
 
 public class ViagemInternacional extends Viagem implements CalculadoraDePrevisao {
     private String passaporte;
