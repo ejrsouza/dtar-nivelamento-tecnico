@@ -46,7 +46,7 @@ public class App {
             System.out.println("Cadastro confirmado: " + acompanhante.isConfirmouCadastro());
         }
 
-        ViagemNacional viagemNacional1 = new ViagemNacional(Destinos.GOIAS);
+        ViagemNacional viagemNacional1 = new ViagemNacional(Destinos.MANAUS);
         try {
             viagemNacional1.setAcompanhantes(acompanhantes);
         } catch (Exception excecao){
@@ -55,7 +55,7 @@ public class App {
     }
         viagemNacional1.setCpf("12345678915");
 
-        ViagemInternacional viagemInternacional1 = new ViagemInternacional(Destinos.MIAMI);
+        ViagemInternacional viagemInternacional1 = new ViagemInternacional(Destinos.ACAPULCO);
         try {
         viagemInternacional1.setAcompanhantes(acompanhantes);
         } catch (Exception excecao){
@@ -68,5 +68,8 @@ public class App {
         System.out.println(viagemInternacional1.getDestino().getCidade());
         System.out.println(viagemNacional1.getCpf());
         System.out.println(viagemInternacional1.getPassaporte());
+
+        System.out.println(viagemInternacional1.calculadorPrevisaoDeDiasParaRetorno());
+        System.out.println(viagemNacional1.calculadorPrevisaoDeDiasParaRetorno());
     }
 }

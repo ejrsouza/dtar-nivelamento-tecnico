@@ -1,12 +1,14 @@
 package dto;
 
 import enums.Destinos;
+import interfaces.CalculadoraDePrevisao;
+import utils.ArquivosUtils;
 
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
 
-public class ViagemInternacional extends Viagem{
+public class ViagemInternacional extends Viagem implements CalculadoraDePrevisao {
     private String passaporte;
 
     public ViagemInternacional(Destinos lugarDeDestino){
@@ -23,15 +25,19 @@ public class ViagemInternacional extends Viagem{
 
     @Override
     public void setAcompanhantes(List<Acompanhante> acompanhantes) throws Exception {
-
-        Properties propriedades = new Properties();
-        propriedades.load(new FileInputStream("src\\main\\resources\\application.properties"));
-        int limiteDeAcompanhantes = Integer.parseInt(propriedades.getProperty("viagem.internacional.acompanhantes.limite"));
+        int limiteDeAcompanhantes = Integer.parseInt(ArquivosUtils.getPropriedade("viagem.internacional.acompanhantes.limite"));
 
         if (acompanhantes.size() <= limiteDeAcompanhantes) {
             super.setAcompanhantes(acompanhantes);
         } else {
             throw new Exception("Impossível realizar viagem internacional com mais que "+ limiteDeAcompanhantes +" acompanhante");
         }
+    }
+
+    public int calculadorPrevisaoDeDiasParaRetorno(){
+        if(this.getDestino().equals(Destinos.MIAMI)){
+            return 1;
+        }
+        return 0;
     }
 }

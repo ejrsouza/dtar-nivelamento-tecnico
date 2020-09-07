@@ -1,13 +1,15 @@
 package dto;
 
 import enums.Destinos;
+import interfaces.CalculadoraDePrevisao;
+import utils.ArquivosUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
 
-public class ViagemNacional extends Viagem{
+public class ViagemNacional extends Viagem implements CalculadoraDePrevisao {
     private String cpf;
 
     public ViagemNacional(Destinos lugarDeDestino){
@@ -25,15 +27,26 @@ public class ViagemNacional extends Viagem{
     @Override
     public void setAcompanhantes(List<Acompanhante> acompanhantes) throws Exception {
 
-        Properties propriedades = new Properties();
-        propriedades.load(new FileInputStream("src\\main\\resources\\application.properties"));
+
         //Apesar de parecer que é inteiro, o dado no arquivo é uma String, por isso requer conversão
-        int limiteDeAcompanhantes = Integer.parseInt(propriedades.getProperty("viagem.nacional.acompanhantes.limite"));
+        int limiteDeAcompanhantes = Integer.parseInt(ArquivosUtils.getPropriedade("viagem.nacional.acompanhantes.limite"));
 
         if (acompanhantes.size() <= limiteDeAcompanhantes) {
             super.setAcompanhantes(acompanhantes);
         } else {
             throw new Exception("Impossível realizar viagem nacional com mais que " + limiteDeAcompanhantes +" acompanhantes");
         }
+    }
+
+    public int calculadorPrevisaoDeDiasParaRetorno(){
+        int quantidadeDeDias = 0;
+        switch (this.getDestino()){
+            case MANAUS: quantidadeDeDias = 5; break;
+            case RECIFE: quantidadeDeDias = 4; break;
+            case MARINGA: quantidadeDeDias = 3; break;
+            case OSASCO: quantidadeDeDias = 1; break;
+            case GOIAS: quantidadeDeDias = 0; break;
+        }
+        return quantidadeDeDias;
     }
 }
